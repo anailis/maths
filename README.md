@@ -9,7 +9,7 @@ make
 
 To execute the program:
 ```
-./mathsml
+./Mathsml
 ```
 
 ### Linear Algebra

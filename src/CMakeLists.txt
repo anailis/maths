@@ -26,7 +26,14 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
                  ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
                  EXCLUDE_FROM_ALL)
+add_subdirectory(tests)
+
+set(SOURCES
+	main.cpp
+	matrix.cpp)
+
+set(HEADERS
+	matrix.h)
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(Mathsml main.cpp)
-target_link_libraries(Mathsml gtest_main)
+add_library(Mathsml STATIC ${SOURCES} ${HEADERS})

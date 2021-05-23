@@ -7,22 +7,23 @@
 class Matrix
 {
     private:
-        int m_numrows;
-        int m_numcols; 
-        //std::vector<std::vector<int>> array;
+        int m_numrows{ 1 };
+        int m_numcols{ 1 }; 
+        std::vector<std::vector<int *>> m_array;
 
     public:
         // constructors
 		Matrix();
-        Matrix(int numrows, int numcols);
+        Matrix(const int numrows, const int numcols);
 
 		// setters 
 
 
         // getters
-        int rowCount() { return m_numrows; };
-        int columnCount() { return m_numcols; };
-        std::pair<int, int> shape();
+        const int rowCount() { return m_numrows; };
+        const int columnCount() { return m_numcols; };
+        const std::pair<int, int> shape();
+		const std::vector<std::vector<int *>> contains();
 };
 
 #endif //MATHSML_MATRIX_H

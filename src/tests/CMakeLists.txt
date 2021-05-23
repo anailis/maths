@@ -5,8 +5,7 @@ set(Sources
 )
 
 add_executable(tests ${Sources})
-target_link_libraries(tests PUBLIC gtest_main)
-
+target_link_libraries(tests PUBLIC gtest_main Mathsml)
 add_test(
 	NAME tests
 	COMMAND tests

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <utility>
 #include <stdexcept>
 #include <vector>
@@ -9,6 +10,8 @@ Matrix::Matrix() // default constructor creates a scalar
 {
 	m_numcols = 1;
 	m_numrows = 1;
+	// resize array to have a number of elements equal to the number of columns
+	// each of these elements is another vector of size number of rows 
 	m_array.resize(m_numcols, std::vector<int>(m_numrows));
 }
 
@@ -47,5 +50,15 @@ const std::vector<std::vector<int>> Matrix::contains()
 }
 
 // printing
+void Matrix::print()
+{
+	for (auto vec: m_array) {
+		for (auto i: vec) {
+			std::cout << i << ' ';
+		}
+		std::cout << '\n';
+	}
+
+}
 
 // basic operations  

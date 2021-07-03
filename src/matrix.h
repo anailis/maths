@@ -25,6 +25,9 @@ class Matrix
         const int columnCount() { return m_numcols; };
         const std::pair<int, int> shape();
 		const std::vector<std::vector<int>> contains();
+
+		// printing
+		void print();
 };
 
 #endif //MATHSML_MATRIX_H

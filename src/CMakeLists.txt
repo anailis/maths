@@ -37,3 +37,5 @@ set(HEADERS
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_library(Mathsml STATIC ${SOURCES} ${HEADERS})
+
+add_executable(maths ${SOURCES} ${HEADERS})

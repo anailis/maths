@@ -16,15 +16,15 @@ TEST(matrix_tests, dimensionConstructor) {
 }
 
 TEST(matrix_tests, dataConstructor) {
-	std::vector<int> input1 = {1, 2, 3};
-	std::vector<int> input2 = {4, 5, 6};
-	std::vector<std::vector<int>> input = {input1, input2};
+	std::vector<double> input1 = {1, 2, 3};
+	std::vector<double> input2 = {4, 5, 6};
+	std::vector<std::vector<double>> input = {input1, input2};
 	Matrix mat(input);
 	EXPECT_EQ(mat.rowCount(), 3);
 	EXPECT_EQ(mat.columnCount(), 2);
 
-	std::vector<int> input3 = {4, 5};
-	std::vector<std::vector<int>> input_to_fail = {input2, input3};
+	std::vector<double> input3 = {4, 5};
+	std::vector<std::vector<double>> input_to_fail = {input2, input3};
 	EXPECT_THROW(Matrix mat(input_to_fail), std::invalid_argument);
 }
 
@@ -46,10 +46,24 @@ TEST(matrix_tests, shape) {
 	EXPECT_EQ(mat.shape(), ans);
 }
 
-TEST(matrix_tests, contains) {
+TEST(matrix_tests, contains_size) {
 	Matrix mat(5, 4);
 	int cols = mat.contains().size();
 	EXPECT_EQ(cols, 4);
 	int rows = mat.contains()[0].size();
 	EXPECT_EQ(rows, 5);
+
+	std::vector<std::vector<double>> data = {{1, 2, 3}, {4, 5, 6}};
+	Matrix mat2(data);
+	int cols2 = mat2.contains().size();
+	EXPECT_EQ(cols2, 2);
+	int rows2 = mat2.contains()[0].size();
+	EXPECT_EQ(rows2, 3);
+}
+
+TEST(matrix_tests, contains_contents) {
+	std::vector<std::vector<double>> data = {{1, 2, 3, 4, 5, 6}};
+	Matrix mat(data);
+	std::vector<std::vector<double>> ans = mat.contains();
+	EXPECT_EQ(data, ans);
 }

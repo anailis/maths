@@ -12,17 +12,17 @@ Matrix::Matrix() // default constructor creates a scalar
 	m_numrows = 1;
 	// resize array to have a number of elements equal to the number of columns
 	// each of these elements is another vector of size number of rows 
-	m_array.resize(m_numcols, std::vector<int>(m_numrows));
+	m_array.resize(m_numcols, std::vector<double>(m_numrows));
 }
 
 Matrix::Matrix(const int numrows, const int numcols)
 {
     m_numrows = numrows;
     m_numcols = numcols;
-	m_array.resize(m_numcols, std::vector<int>(m_numrows));
+	m_array.resize(m_numcols, std::vector<double>(m_numrows));
 }
 
-Matrix::Matrix(const std::vector<std::vector<int>> array) 
+Matrix::Matrix(const std::vector<std::vector<double>> array) 
 {
 	m_array = array;
 	m_numcols = array.size();
@@ -44,7 +44,7 @@ const std::pair<int, int> Matrix::shape()
     return xy;
 }
 
-const std::vector<std::vector<int>> Matrix::contains()
+const std::vector<std::vector<double>> Matrix::contains()
 {
 	return m_array;
 }
@@ -58,7 +58,6 @@ void Matrix::print()
 		}
 		std::cout << '\n';
 	}
-
 }
 
 // basic operations  

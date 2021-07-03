@@ -9,13 +9,13 @@ class Matrix
     private:
         int m_numrows{ 1 };
         int m_numcols{ 1 }; 
-        std::vector<std::vector<int>> m_array;
+        std::vector<std::vector<double>> m_array;
 
     public:
         // constructors
 		Matrix();
         Matrix(const int numrows, const int numcols);
-		Matrix(const std::vector<std::vector<int>> array);
+		Matrix(const std::vector<std::vector<double>> array);
 
 		// setters 
 
@@ -24,7 +24,7 @@ class Matrix
         const int rowCount() { return m_numrows; };
         const int columnCount() { return m_numcols; };
         const std::pair<int, int> shape();
-		const std::vector<std::vector<int>> contains();
+		const std::vector<std::vector<double>> contains();
 
 		// printing
 		void print();

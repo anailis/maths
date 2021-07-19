@@ -9,16 +9,17 @@ make
 
 To execute the program:
 ```
-./Mathsml
+./maths
 ```
+
+Documentation can be found in the GitHub wiki. 
 
 ### Linear Algebra
 
 #### Task 1: Vectors and Matrices
 
 **Aim:** to implement a class `Matrix` which stores vectors and matrices. 
-**Status:**
-**Outcome:**
+**Status:** Complete
 
 #### Task 2: Addition, Subtraction, and Products
 
@@ -37,7 +38,15 @@ To execute the program:
 - Use of other constructors does not default to the identity matrix 
 - All task 2 methods for the `Matrix` class work with the identity matrix and give the correct outcomes
 
-#### Task 4: Inverse and Transpose
+#### Task 4: Symmetric Matrix
+
+**Aim:**: create an indicator for symmetric matrices and use this to simplify operations 
+**Tests:**
+- Give `Matrix` a symmetric attribute
+- Modify multiplication functions for symmetric inputs 
+- Create a constructor for symmetric matrices 
+
+#### Task 5: Inverse and Transpose
 
 **Aim:** to implement tranpose and matrix inverse member functions for class `Matrix`
 **Tests:**

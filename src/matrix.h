@@ -17,7 +17,7 @@ class Matrix
         // constructors
 		Matrix();
         Matrix(const int numrows, const int numcols);
-		Matrix(const std::vector<std::vector<double>> array);
+		Matrix(const std::vector<std::vector<double>>* array);
 
         // getters
         const int rowCount() { return m_numrows; };
@@ -28,15 +28,17 @@ class Matrix
 		const bool isSquare() { return m_square; };
 
 		// setters
-		void reassign(const std::vector<std::vector<double>> mat);
+		void reassign(const std::vector<std::vector<double>>* mat);
 
 		// printing
 		void print();
 
 		// basic operations
 		void multiply(double value);
-		void multiply(std::vector<double> vec);
-		void multiply(Matrix mat);
+		void multiply(std::vector<double>* vec);
+		void multiply(Matrix* mat);
+		
+		void dotProduct(std::vector<double>);
 };
 
 #endif //MATHSML_MATRIX_H

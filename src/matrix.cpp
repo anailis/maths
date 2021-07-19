@@ -25,17 +25,18 @@ Matrix::Matrix(const int numrows, const int numcols)
 	m_vector = m_numrows == 1 | m_numcols == 1;
 }
 
-Matrix::Matrix(const std::vector<std::vector<double>> array) 
+Matrix::Matrix(const std::vector<std::vector<double>>* array) 
 {
-	m_array = array;
-	m_numcols = array.size();
-	m_numrows = array[0].size();
+	m_array = *array;
+	m_numcols = m_array.size();
+	m_numrows = m_array[0].size();
+
 	m_square = m_numrows == m_numcols;
 	m_vector = m_numrows == 1 | m_numcols == 1;
 
 	for (int column = 1; column < m_numcols; column++)
 	{
-		if (array[column].size() != m_numrows) 
+		if (m_array[column].size() != m_numrows) 
 		{
 			throw std::invalid_argument("All rows must be of equal length");
 		}
@@ -55,15 +56,15 @@ const std::vector<std::vector<double>> Matrix::contains()
 }
 
 // setters
-void Matrix::reassign(const std::vector<std::vector<double>> mat)
+void Matrix::reassign(const std::vector<std::vector<double>>* mat)
 {
-	m_array = mat;
+	m_array = *mat;
 	m_numcols = m_array.size();
 	m_numrows = m_array[0].size();
 
 	for (int column = 1; column < m_numcols; column++)
 	{
-		if (mat[column].size() != m_numrows) 
+		if (m_array[column].size() != m_numrows) 
 		{
 			throw std::invalid_argument("All rows must be of equal length");
 		}
@@ -92,11 +93,11 @@ void Matrix::multiply(double value)
 	}
 }
 
-// vector input assumed to be a column vector 
-void Matrix::multiply(std::vector<double> vec) 
+// input assumed to be a pointer to a column vector 
+void Matrix::multiply(std::vector<double>* vec) 
 {
 	// check that dimensions allow for multiplication 
-	if (vec.size() != m_numcols) {
+	if ((*vec).size() != m_numcols) {
 		throw std::invalid_argument("Length of vector b must be equal to the number of columns in the matrix A to perform Ab");
 	}
 
@@ -106,18 +107,21 @@ void Matrix::multiply(std::vector<double> vec)
 
 	for (int i = 0; i < m_numrows; i++) {
 		double sum = 0;
-		for (int j = 0; j < vec.size(); j++) {
-			sum += vec[j] * m_array[j][i];
+		for (int j = 0; j < (*vec).size(); j++) {
+			sum += (*vec)[j] * m_array[j][i];
 		}
   		ans[i][0] = sum;
 	}
 
-	this->reassign(ans);
+	this->reassign(&ans);
 }
 
+void Matrix::dotProduct(std::vector<double> vec) 
+{
 
+}
 
-//void Matrix::multiply(Matrix mat)
+//void Matrix::multiply(Matrix* mat)
 //{
 //	if (mat.rowCount() != m_numcols) {
 //		throw std::invalid_argument("Number of rows in matrix B must be equal to the number of columns in the matrix A to perform AB");

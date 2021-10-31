@@ -116,7 +116,7 @@ void Matrix::multiply(std::vector<double>* vec)
 	this->reassign(&ans);
 }
 
-void Matrix::dotProduct(std::vector<double> vec) 
+void Matrix::dotProduct(std::vector<double>* vec) 
 {
 
 }

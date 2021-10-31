@@ -38,7 +38,7 @@ class Matrix
 		void multiply(std::vector<double>* vec);
 		void multiply(Matrix* mat);
 		
-		void dotProduct(std::vector<double>);
+		void dotProduct(std::vector<double>* vec);
 };
 
 #endif //MATHSML_MATRIX_H

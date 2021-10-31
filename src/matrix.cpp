@@ -10,6 +10,7 @@ Matrix::Matrix() // default constructor creates a scalar
 {
 	m_numcols = 1;
 	m_numrows = 1;
+	m_vectortype = COLUMN;
 	// resize array to have a number of elements equal to the number of columns
 	// each of these elements is another vector of size number of rows 
 	m_array.resize(m_numcols, std::vector<double>(m_numrows));
@@ -23,6 +24,13 @@ Matrix::Matrix(const int numrows, const int numcols)
 
 	m_square = m_numrows == m_numcols;
 	m_vector = m_numrows == 1 | m_numcols == 1;
+	if (m_vector) {
+		if (m_numrows == 1) {
+			m_vectortype = COLUMN;
+		} else {
+			m_vectortype = ROW;
+		}
+	} 
 }
 
 Matrix::Matrix(const std::vector<std::vector<double>>* array) 
@@ -33,6 +41,13 @@ Matrix::Matrix(const std::vector<std::vector<double>>* array)
 
 	m_square = m_numrows == m_numcols;
 	m_vector = m_numrows == 1 | m_numcols == 1;
+	if (m_vector) {
+		if (m_numrows == 1) {
+			m_vectortype = COLUMN;
+		} else {
+			m_vectortype = ROW;
+		}
+	} 
 
 	for (int column = 1; column < m_numcols; column++)
 	{
@@ -53,6 +68,21 @@ const std::pair<int, int> Matrix::shape()
 const std::vector<std::vector<double>> Matrix::contains()
 {
 	return m_array;
+}
+
+const std::string Matrix::vectorType() 
+{
+	switch(m_vectortype) 
+	{
+		case NONE:
+			return "NONE";
+		case COLUMN:
+			return "COLUMN";
+		case ROW:
+			return "ROW";
+	}
+
+	return "NOT SET";
 }
 
 // setters
@@ -118,7 +148,12 @@ void Matrix::multiply(std::vector<double>* vec)
 
 void Matrix::dotProduct(std::vector<double>* vec) 
 {
-
+	if (!m_vector) {
+		throw std::invalid_argument("Dot products can only be calculated for a pair of vectors");
+	}
+	if ((*vec).size() != m_numcols & (*vec).size() != m_numrows) {
+		throw std::invalid_argument("Dimensions of vectors must match");
+	}
 }
 
 //void Matrix::multiply(Matrix* mat)

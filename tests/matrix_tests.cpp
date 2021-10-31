@@ -13,6 +13,11 @@ TEST(matrix_tests, dimensionConstructor) {
 	Matrix mat(5, 4);
 	EXPECT_EQ(mat.rowCount(), 5);
 	EXPECT_EQ(mat.columnCount(), 4);
+
+	// a scalar
+	Matrix mat1(1, 1);
+	EXPECT_EQ(mat1.rowCount(), 1);
+	EXPECT_EQ(mat1.columnCount(), 1);
 }
 
 TEST(matrix_tests, dataConstructor) {
@@ -25,7 +30,13 @@ TEST(matrix_tests, dataConstructor) {
 
 	std::vector<double> input3 = {4, 5};
 	std::vector<std::vector<double>> input_to_fail = {input2, input3};
-	EXPECT_THROW(Matrix mat(&input_to_fail), std::invalid_argument);
+	EXPECT_THROW(Matrix mat1(&input_to_fail), std::invalid_argument);
+
+	std::vector<double> input4 = {1};
+	std::vector<std::vector<double>> scalar = {input4};
+	Matrix mat2(&scalar);
+	EXPECT_EQ(mat2.rowCount(), 1);
+	EXPECT_EQ(mat2.columnCount(), 1);
 }
 
 TEST(matrix_tests, rowCount) {
@@ -135,4 +146,29 @@ TEST(matrix_tests, matrix_types) {
 	Matrix mat6(&input3);
 	EXPECT_FALSE(mat6.isVector());
 	EXPECT_TRUE(mat6.isSquare());
+}
+
+TEST(matrix_tests, vector_types) {
+	std::string none = "NONE";
+	std::string row = "ROW";
+	std::string column = "COLUMN";
+
+	Matrix mat1(1, 5);
+	EXPECT_EQ(mat1.vectorType(), column);
+
+	Matrix mat2(100, 1);
+	EXPECT_EQ(mat2.vectorType(), row);
+
+	Matrix mat3(500, 400);
+	EXPECT_EQ(mat3.vectorType(), none);
+
+	// a scalar
+	Matrix mat4;
+	EXPECT_EQ(mat4.vectorType(), column);
+	Matrix mat5(1, 1);
+	EXPECT_EQ(mat5.vectorType(), column);
+
+	std::vector<std::vector<double>> input1 = {{1, 2, 3}, {4, 5, 6}};
+	Matrix mat6(&input1);
+	EXPECT_EQ(mat6.vectorType(), none);
 }

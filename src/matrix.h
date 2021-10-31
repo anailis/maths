@@ -7,10 +7,17 @@
 class Matrix
 {
     private:
+		enum vectorTypes {
+			NONE,
+			COLUMN,
+			ROW
+		};
+
         int m_numrows{ 1 };
         int m_numcols{ 1 }; 
 		bool m_vector{ true };
 		bool m_square{ true };
+		vectorTypes m_vectortype{ NONE };
         std::vector<std::vector<double>> m_array;
 
     public:
@@ -26,6 +33,7 @@ class Matrix
 		const std::vector<std::vector<double>> contains();
 		const bool isVector() { return m_vector; };
 		const bool isSquare() { return m_square; };
+		const std::string vectorType();
 
 		// setters
 		void reassign(const std::vector<std::vector<double>>* mat);

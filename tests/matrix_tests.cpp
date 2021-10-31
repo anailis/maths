@@ -180,4 +180,13 @@ TEST(matrix_tests, transpose) {
 	t2.transpose();
 	EXPECT_EQ(t1.contains()[1][2], t2.contains()[2][1]);
 	EXPECT_EQ(t1.contains()[0][1], t2.contains()[1][0]);
+	EXPECT_EQ(t1.columnCount(), 2);
+	EXPECT_EQ(t1.rowCount(), 3);
+	EXPECT_EQ(t2.columnCount(), 3);
+	EXPECT_EQ(t2.rowCount(), 2);
+
+	// twice transposing should return original
+	Matrix t3 = t2;
+	t3.transpose();
+	EXPECT_EQ(t1.contains(), t3.contains());
 }

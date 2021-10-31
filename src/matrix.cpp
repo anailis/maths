@@ -117,9 +117,9 @@ void Matrix::transpose()
 // printing
 void Matrix::print()
 {
-	for (auto vec: m_array) {
-		for (auto i: vec) {
-			std::cout << i << ' ';
+	for (int row = 0; row < m_numrows; row++) {
+		for (int column = 0; column < m_numcols; column++) {
+			std::cout << m_array[column][row] << ' ';
 		}
 		std::cout << '\n';
 	}

@@ -70,6 +70,14 @@ const std::vector<std::vector<double>> Matrix::contains()
 	return m_array;
 }
 
+const double Matrix::getElement(int row, int column)
+{
+	if (row > (m_numrows - 1) | column > (m_numcols - 1)) {
+		throw std::invalid_argument("Row or column number given exceeds dimensions of matrix");
+	}
+	return m_array[column][row];
+}
+
 const std::string Matrix::vectorType() 
 {
 	switch(m_vectortype) 

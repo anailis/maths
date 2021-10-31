@@ -29,6 +29,7 @@ class Matrix
         // getters
         const int rowCount() { return m_numrows; };
         const int columnCount() { return m_numcols; };
+		const double getElement(int row, int column);
         const std::pair<int, int> shape();
 		const std::vector<std::vector<double>> contains();
 		const bool isVector() { return m_vector; };

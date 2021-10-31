@@ -190,3 +190,14 @@ TEST(matrix_tests, transpose) {
 	t3.transpose();
 	EXPECT_EQ(t1.contains(), t3.contains());
 }
+
+TEST(matrix_tests, getElement) {
+	std::vector<std::vector<double>> data = {{1, 2, 3}, {4, 5, 6}};
+	Matrix t1(&data);
+	Matrix t2(&data);
+	t2.transpose();
+	
+	EXPECT_EQ(t1.getElement(2, 0), 3);
+	EXPECT_EQ(t2.getElement(1, 0), 4);
+	EXPECT_EQ(t2.getElement(1, 2), 6);
+}

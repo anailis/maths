@@ -49,7 +49,7 @@ Matrix::Matrix(const std::vector<std::vector<double>>* array)
 		}
 	} 
 
-	for (int column = 1; column < m_numcols; column++)
+	for (int column = 0; column < m_numcols; column++)
 	{
 		if (m_array[column].size() != m_numrows) 
 		{
@@ -92,13 +92,26 @@ void Matrix::reassign(const std::vector<std::vector<double>>* mat)
 	m_numcols = m_array.size();
 	m_numrows = m_array[0].size();
 
-	for (int column = 1; column < m_numcols; column++)
+	for (int column = 0; column < m_numcols; column++)
 	{
 		if (m_array[column].size() != m_numrows) 
 		{
 			throw std::invalid_argument("All rows must be of equal length");
 		}
 	}
+}
+
+void Matrix::transpose()
+{
+	std::vector<std::vector<double>> transposed(
+		m_numrows, 
+		std::vector<double>(m_numcols));
+	for (int row = 0; row < m_numrows; row++) {
+		for (int column = 0; column < m_numcols; column++) {
+			transposed[row][column] = m_array[column][row];
+		}
+	}
+	reassign(&transposed);
 }
 
 // printing

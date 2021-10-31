@@ -37,6 +37,7 @@ class Matrix
 
 		// setters
 		void reassign(const std::vector<std::vector<double>>* mat);
+		void transpose();
 
 		// printing
 		void print();

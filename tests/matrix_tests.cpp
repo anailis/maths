@@ -172,3 +172,12 @@ TEST(matrix_tests, vector_types) {
 	Matrix mat6(&input1);
 	EXPECT_EQ(mat6.vectorType(), none);
 }
+
+TEST(matrix_tests, transpose) {
+	std::vector<std::vector<double>> data = {{1, 2, 3}, {4, 5, 6}};
+	Matrix t1(&data);
+	Matrix t2(&data);
+	t2.transpose();
+	EXPECT_EQ(t1.contains()[1][2], t2.contains()[2][1]);
+	EXPECT_EQ(t1.contains()[0][1], t2.contains()[1][0]);
+}

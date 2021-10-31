@@ -1,18 +1,34 @@
 ## maths
 
-In this directory, I implement the mathematical concepts that I learn in code. These are divided into small, distinct tasks. 
+In this directory, I implement the mathematical concepts that I learn in code. 
 
-To build the project: 
+To build the project, execute make: 
 ```
 make
 ```
 
 To execute the program:
 ```
-./maths
+./bin/maths
 ```
 
 Documentation can be found in the GitHub wiki. 
+
+The project was developed in a VSCode Docker development container. 
+
+Unit testing was performed using the googletest framework. 
+You can execute the unit tests using: 
+```
+./tests/tests
+```
+
+### Dependencies 
+
+- Make
+- Cmake 2.8.12
+- C++
+- (for testing) [googletest](https://github.com/google/googletest)
+- (for dev container) Docker, VSCode
 
 ### Linear Algebra
 

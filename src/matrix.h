@@ -27,11 +27,11 @@ class Matrix
 		Matrix(const std::vector<std::vector<double>>* array);
 
         // getters
-        const int rowCount() { return m_numrows; };
-        const int columnCount() { return m_numcols; };
-		const double getElement(int row, int column);
-        const std::pair<int, int> shape();
-		const std::vector<std::vector<double>> contains();
+        const int rowCount() const { return m_numrows; };
+        const int columnCount() const { return m_numcols; };
+		const double getElement(int row, int column) const;
+        const std::pair<int, int> shape() const;
+		const std::vector<std::vector<double>> contains() const;
 		const bool isVector() { return m_vector; };
 		const bool isSquare() { return m_square; };
 		const std::string vectorType();
@@ -44,6 +44,8 @@ class Matrix
 		void print();
 
 		// basic operations
+		friend Matrix operator+(const Matrix& a, const Matrix& b);
+		friend Matrix operator-(const Matrix& a, const Matrix& b);
 		void multiply(double value);
 		void multiply(std::vector<double>* vec);
 		void multiply(Matrix* mat);

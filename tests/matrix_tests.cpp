@@ -201,3 +201,35 @@ TEST(matrix_tests, getElement) {
 	EXPECT_EQ(t2.getElement(1, 0), 4);
 	EXPECT_EQ(t2.getElement(1, 2), 6);
 }
+
+TEST(matrix_tests, addition) {
+	std::vector<std::vector<double>> data1 = {{1, 2, 3}, {4, 5, 6}};
+	Matrix mat1(&data1);
+
+	std::vector<std::vector<double>> data2 = {{0, -2, -3}, {-4, -4, -6}};
+	Matrix mat2(&data2);
+	
+	Matrix result = mat1 + mat2;
+
+	std::vector<std::vector<double>> ans = {{1, 0, 0}, {0, 1, 0}};
+	EXPECT_EQ(result.contains(), ans);
+
+	Matrix vec(3, 1);
+	EXPECT_THROW(vec + mat1, std::invalid_argument);
+}
+
+TEST(matrix_tests, subtraction) {
+	std::vector<std::vector<double>> data1 = {{1, 2, 3}, {4, 5, 6}};
+	Matrix mat1(&data1);
+
+	std::vector<std::vector<double>> data2 = {{100, 100, 100}, {0, 0, 0}};
+	Matrix mat2(&data2);
+	
+	Matrix result = mat2 - mat1;
+
+	std::vector<std::vector<double>> ans = {{99, 98, 97}, {-4, -5, -6}};
+	EXPECT_EQ(result.contains(), ans);
+
+	Matrix vec(3, 1);
+	EXPECT_THROW(vec - mat1, std::invalid_argument);
+}

@@ -59,18 +59,18 @@ Matrix::Matrix(const std::vector<std::vector<double>>* array)
 }
 
 // getters
-const std::pair<int, int> Matrix::shape() 
+const std::pair<int, int> Matrix::shape() const
 {
     const std::pair<int, int> xy(m_numrows, m_numcols);
     return xy;
 }
 
-const std::vector<std::vector<double>> Matrix::contains()
+const std::vector<std::vector<double>> Matrix::contains() const
 {
 	return m_array;
 }
 
-const double Matrix::getElement(int row, int column)
+const double Matrix::getElement(int row, int column) const
 {
 	if (row > (m_numrows - 1) | column > (m_numcols - 1)) {
 		throw std::invalid_argument("Row or column number given exceeds dimensions of matrix");
@@ -134,6 +134,42 @@ void Matrix::print()
 }
 
 // basic operations  
+Matrix operator+(const Matrix& a, const Matrix& b) 
+{
+	if (b.shape() != a.shape()) {
+		throw std::invalid_argument("The shape of matrices A and B must be the same for addition.");
+	}
+
+	std::vector<std::vector<double>> array(b.columnCount(), std::vector<double>(b.rowCount(), 0));
+
+	for (int row = 0; row < b.rowCount(); row++) {
+		for (int column = 0; column < b.columnCount(); column++) {
+			array[column][row] = a.getElement(row, column) + b.getElement(row, column);
+		}
+	}
+
+	Matrix sum(&array);
+	return sum;
+}
+
+Matrix operator-(const Matrix& a, const Matrix& b) 
+{
+	if (b.shape() != a.shape()) {
+		throw std::invalid_argument("The shape of matrices A and B must be the same for subtraction.");
+	}
+
+	std::vector<std::vector<double>> array(b.columnCount(), std::vector<double>(b.rowCount(), 0));
+
+	for (int row = 0; row < b.rowCount(); row++) {
+		for (int column = 0; column < b.columnCount(); column++) {
+			array[column][row] = a.getElement(row, column) - b.getElement(row, column);
+		}
+	}
+
+	Matrix sum(&array);
+	return sum;
+}
+
 void Matrix::multiply(double value) 
 {
 	for( auto &vec: m_array )

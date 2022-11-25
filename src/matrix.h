@@ -45,9 +45,9 @@ class Matrix
 		// basic operations
 		friend Matrix operator+(const Matrix& a, const Matrix& b);
 		friend Matrix operator-(const Matrix& a, const Matrix& b);
-		void multiply(double value);
-		void multiply(std::vector<double>* vec);
-		void multiply(Matrix* mat);
+		Matrix multiply(double value);
+		Matrix multiply(std::vector<double>* vec);
+		Matrix multiply(Matrix* mat);
 		
 		Matrix transpose() const;
 

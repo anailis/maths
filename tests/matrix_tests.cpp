@@ -84,9 +84,8 @@ TEST(matrix_tests, multiply_scalar) {
 	std::vector<std::vector<double>> ans = {{2, 4, 6, 8, 10, 12}};
 
 	Matrix mat(&data);
-	mat.multiply(2);
-	std::vector<std::vector<double>> multiplied = mat.contains();
-	EXPECT_EQ(multiplied, ans);
+	Matrix result = mat.multiply(2);
+	EXPECT_EQ(result.contains(), ans);
 }
 
 TEST(matrix_tests, multiply_vector) {
@@ -98,10 +97,9 @@ TEST(matrix_tests, multiply_vector) {
 
 	EXPECT_THROW(mat.multiply(&vec1), std::invalid_argument);
 
-	mat.multiply(&vec2);
-	std::vector<std::vector<double>> multiplied = mat.contains();
+	Matrix result = mat.multiply(&vec2);
 	std::vector<std::vector<double>> ans = {{14}, {14}};
-	EXPECT_EQ(multiplied, ans);
+	EXPECT_EQ(result.contains(), ans);
 }
 
 TEST(matrix_tests, reassign) {
@@ -247,3 +245,21 @@ TEST(matrix_tests, dotProduct) {
 	EXPECT_EQ(mat2.dotProduct(&valid_vec), 27);
 	EXPECT_THROW(mat1.dotProduct(&invalid_vec), std::invalid_argument);
 }
+
+// TEST(matrix_tests, multiply_matrix) {
+// 	std::vector<std::vector<double>> data1 = {{1, 2, 3}, {4, 5, 6}};
+// 	Matrix mat1(&data1);
+
+// 	std::vector<std::vector<double>> data2 = {{7, 6}, {3, 4}, {7, 6}};
+// 	Matrix mat2(&data2);
+
+// 	mat1.multiply(&mat2);
+
+// 	std::vector<std::vector<double>> ans = {{31, 44, 57}, {19, 26, 33}, {31, 44, 57}};
+// 	EXPECT_EQ(mat1.contains(), ans);
+
+// 	std::vector<std::vector<double>> data3 = {{7, 6, 4}, {4, 7, 6}};
+// 	Matrix mat3(&data3);
+
+// 	EXPECT_THROW(mat1.multiply(&mat3), std::invalid_argument);
+// }

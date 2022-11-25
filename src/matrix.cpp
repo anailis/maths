@@ -170,18 +170,23 @@ Matrix operator-(const Matrix& a, const Matrix& b)
 	return sum;
 }
 
-void Matrix::multiply(double value) 
+Matrix Matrix::multiply(double value) 
 {
-	for( auto &vec: m_array )
+	std::vector<std::vector<double>> array = m_array;
+
+	for(auto &vec: array)
 	{
 		for (auto &i: vec) {
 			i *= value;
 		}
 	}
+
+	Matrix result(&array);
+	return result;
 }
 
 // input assumed to be a pointer to a column vector 
-void Matrix::multiply(std::vector<double>* vec) 
+Matrix Matrix::multiply(std::vector<double>* vec) 
 {
 	// check that dimensions allow for multiplication 
 	if ((*vec).size() != m_numcols) {
@@ -200,7 +205,8 @@ void Matrix::multiply(std::vector<double>* vec)
   		ans[i][0] = sum;
 	}
 
-	this->reassign(&ans);
+	Matrix result = Matrix(&ans);
+	return result;
 }
 
 double Matrix::dotProduct(std::vector<double>* vec) const

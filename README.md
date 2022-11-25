@@ -24,7 +24,7 @@ You can execute the unit tests using:
 
 ### Dependencies 
 
-- Make
+- Make 4.2.1
 - Cmake 2.8.12
 - C++
 - (for testing) [googletest](https://github.com/google/googletest)
@@ -32,39 +32,19 @@ You can execute the unit tests using:
 
 ### Linear Algebra
 
-#### Task 1: Vectors and Matrices
+Completed tasks:
+- Implement class Matrix 
+- Multiplication by scalars and vectors (currently in-place by a method)
+- Transpose matrices
+- Addition and subtraction (as overloaded operators)
 
-**Aim:** to implement a class `Matrix` which stores vectors and matrices. 
-**Status:** Complete
+In progress:
+- Multiplication by matrices 
 
-#### Task 2: Addition, Subtraction, and Products
-
-**Aim:** to implement matrix and vector addition; subtraction; multiplication by scalars, vectors, matrices; Hadamard product member functions for class `Matrix`
-**Tests:**
-- Correct output of addiction, subtraction, and products
-- Appropriate error messages for incorrect dimensions
-**Status:**
-**Outcome:**
-
-#### Task 3: Identity Matrix
-
-**Aim:** create a new constructor for the `Matrix` class that returns an identity matrix
-**Tests:**
-- Correct use of the constructor returns an identity matrix
-- Use of other constructors does not default to the identity matrix 
-- All task 2 methods for the `Matrix` class work with the identity matrix and give the correct outcomes
-
-#### Task 4: Symmetric Matrix
-
-**Aim:**: create an indicator for symmetric matrices and use this to simplify operations 
-**Tests:**
-- Give `Matrix` a symmetric attribute
-- Modify multiplication functions for symmetric inputs 
-- Create a constructor for symmetric matrices 
-
-#### Task 5: Inverse and Transpose
-
-**Aim:** to implement tranpose and matrix inverse member functions for class `Matrix`
-**Tests:**
-- Correct inverse and transpose outputs
-- Error when asking for inverse of any vector or a non-invertible matrix 
+To-do:
+- Dot product
+- Hadamard product
+- Identity matrix construction
+- Symmetry 
+- Inverse
+- Reassign specific elements of matrix

@@ -38,7 +38,6 @@ class Matrix
 
 		// setters
 		void reassign(const std::vector<std::vector<double>>* mat);
-		void transpose();
 
 		// printing
 		void print();
@@ -50,7 +49,9 @@ class Matrix
 		void multiply(std::vector<double>* vec);
 		void multiply(Matrix* mat);
 		
-		double dotProduct(std::vector<double>* vec);
+		Matrix transpose() const;
+
+		double dotProduct(std::vector<double>* vec) const;
 };
 
 #endif //MATHSML_MATRIX_H

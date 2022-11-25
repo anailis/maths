@@ -109,7 +109,7 @@ void Matrix::reassign(const std::vector<std::vector<double>>* mat)
 	}
 }
 
-void Matrix::transpose()
+Matrix Matrix::transpose() const
 {
 	std::vector<std::vector<double>> transposed(
 		m_numrows, 
@@ -119,7 +119,7 @@ void Matrix::transpose()
 			transposed[row][column] = m_array[column][row];
 		}
 	}
-	reassign(&transposed);
+	return Matrix(&transposed);
 }
 
 // printing
@@ -203,7 +203,7 @@ void Matrix::multiply(std::vector<double>* vec)
 	this->reassign(&ans);
 }
 
-double Matrix::dotProduct(std::vector<double>* vec) 
+double Matrix::dotProduct(std::vector<double>* vec) const
 {
 	if (!m_vector) {
 		throw std::invalid_argument("Dot products can only be calculated for a pair of vectors");
@@ -213,13 +213,15 @@ double Matrix::dotProduct(std::vector<double>* vec)
 		throw std::invalid_argument("Dimensions of vectors must match");
 	}
 
-	if (m_vectortype == COLUMN) {
-		this->transpose();
-	}
-
 	double product;
-	for (int i = 0; i < m_numrows; i++) {
-		product += (*vec)[i] * m_array[0][i];
+	if (m_vectortype == ROW) {
+		for (int i = 0; i < m_numrows; i++) {
+			product += (*vec)[i] * m_array[0][i];
+		}
+	} else {
+		for (int i = 0; i < m_numcols; i++) {
+			product += (*vec)[i] * m_array[i][0];
+		}
 	}
 
 	return product;

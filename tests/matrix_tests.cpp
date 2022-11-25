@@ -176,8 +176,7 @@ TEST(matrix_tests, vector_types) {
 TEST(matrix_tests, transpose) {
 	std::vector<std::vector<double>> data = {{1, 2, 3}, {4, 5, 6}};
 	Matrix t1(&data);
-	Matrix t2(&data);
-	t2.transpose();
+	Matrix t2 = t1.transpose();
 	EXPECT_EQ(t1.contains()[1][2], t2.contains()[2][1]);
 	EXPECT_EQ(t1.contains()[0][1], t2.contains()[1][0]);
 	EXPECT_EQ(t1.columnCount(), 2);
@@ -186,16 +185,14 @@ TEST(matrix_tests, transpose) {
 	EXPECT_EQ(t2.rowCount(), 2);
 
 	// twice transposing should return original
-	Matrix t3 = t2;
-	t3.transpose();
+	Matrix t3 = t2.transpose();
 	EXPECT_EQ(t1.contains(), t3.contains());
 }
 
 TEST(matrix_tests, getElement) {
 	std::vector<std::vector<double>> data = {{1, 2, 3}, {4, 5, 6}};
 	Matrix t1(&data);
-	Matrix t2(&data);
-	t2.transpose();
+	Matrix t2 = t1.transpose();
 	
 	EXPECT_EQ(t1.getElement(2, 0), 3);
 	EXPECT_EQ(t2.getElement(1, 0), 4);

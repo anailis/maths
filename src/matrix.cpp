@@ -203,14 +203,26 @@ void Matrix::multiply(std::vector<double>* vec)
 	this->reassign(&ans);
 }
 
-void Matrix::dotProduct(std::vector<double>* vec) 
+double Matrix::dotProduct(std::vector<double>* vec) 
 {
 	if (!m_vector) {
 		throw std::invalid_argument("Dot products can only be calculated for a pair of vectors");
 	}
+
 	if ((*vec).size() != m_numcols & (*vec).size() != m_numrows) {
 		throw std::invalid_argument("Dimensions of vectors must match");
 	}
+
+	if (m_vectortype == COLUMN) {
+		this->transpose();
+	}
+
+	double product;
+	for (int i = 0; i < m_numrows; i++) {
+		product += (*vec)[i] * m_array[0][i];
+	}
+
+	return product;
 }
 
 //void Matrix::multiply(Matrix* mat)

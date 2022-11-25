@@ -233,3 +233,20 @@ TEST(matrix_tests, subtraction) {
 	Matrix vec(3, 1);
 	EXPECT_THROW(vec - mat1, std::invalid_argument);
 }
+
+TEST(matrix_tests, dotProduct) {
+	std::vector<double> valid_vec = {5, 5, 4};
+	std::vector<double> invalid_vec = {5, 5, 4, 8};
+
+	std::vector<std::vector<double>> data1 = {{1, 2, 3}};
+	Matrix mat1(&data1);
+
+	EXPECT_EQ(mat1.dotProduct(&valid_vec), 27);
+	EXPECT_THROW(mat1.dotProduct(&invalid_vec), std::invalid_argument);
+
+	std::vector<std::vector<double>> data2 = {{1}, {2}, {3}};
+	Matrix mat2(&data2);
+
+	EXPECT_EQ(mat2.dotProduct(&valid_vec), 27);
+	EXPECT_THROW(mat1.dotProduct(&invalid_vec), std::invalid_argument);
+}

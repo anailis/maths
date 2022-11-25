@@ -37,12 +37,12 @@ Completed tasks:
 - Multiplication by scalars and vectors (currently in-place by a method)
 - Transpose matrices
 - Addition and subtraction (as overloaded operators)
+- Dot product
 
 In progress:
 - Multiplication by matrices 
 
 To-do:
-- Dot product
 - Hadamard product
 - Identity matrix construction
 - Symmetry 
